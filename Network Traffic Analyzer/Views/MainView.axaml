@@ -70,11 +70,32 @@
 					</DataGrid>
 				</TabItem>
 
+				<TabItem Header="IP Info">
+					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="TTL" Binding="{Binding TTL}" Width="*" />
+							<DataGridTextColumn Header="IP Header Length" Binding="{Binding IPHeaderLength}" Width="*" />
+							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+				<TabItem Header="TCP/UDP Info">
+					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="TCP Flags" Binding="{Binding TCPFlags}" Width="*" />
+							<DataGridTextColumn Header="Payload Size" Binding="{Binding PayloadSize}" Width="*" />
+							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
 				<TabItem Header="HTTP">
 					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
 						<DataGrid.Columns>
 							<DataGridTextColumn Header="HTTP Method" Binding="{Binding HTTPMethod}" Width="*" />
 							<DataGridTextColumn Header="HTTP Request" Binding="{Binding HTTPRequest}" Width="*" />
+							<DataGridTextColumn Header="Is Encrypted (443?)" Binding="{Binding IsEncrypted}" Width="*" />
 							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
 						</DataGrid.Columns>
 					</DataGrid>
