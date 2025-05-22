@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Network_Traffic_Analyzer.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Network_Traffic_Analyzer.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+	<ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto">
+		<StackPanel Margin="20" Spacing="12">
+
+			<Border Margin="5" CornerRadius="10" Background="Blue" Padding="10">
+				<TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Text="Network Traffic Analyzer" Foreground="Black"/>
+			</Border>
+
+			<!-- Network Devices Grid -->
+			<DataGrid Margin="0,0,0,20"
+					  ItemsSource="{Binding NetworkDevices}"
+					  SelectedItem="{Binding SelectedDevice, Mode=TwoWay}"
+					  AutoGenerateColumns="False"
+					  GridLinesVisibility="All"
+					  BorderThickness="1"
+					  BorderBrush="Blue"
+					  Name="PortDataGrid"
+					  Height="300">
+
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+					<DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
+					<DataGridTextColumn Header="MAC Address" Binding="{Binding MACAddress}" IsReadOnly="True" Width="*"/>
+				</DataGrid.Columns>
+			</DataGrid>
+
+			<TabControl Margin="0,0,0,20" Height="300">
+				<TabItem Header="Basic Info">
+					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}" Width="*" />
+							<DataGridTextColumn Header="Protocol" Binding="{Binding Protocol}" Width="*" />
+							<DataGridTextColumn Header="Packet Size" Binding="{Binding PacketSize}" Width="*" />
+							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+				<TabItem Header="Source">
+					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Source IP" Binding="{Binding SourceIP}" Width="*" />
+							<DataGridTextColumn Header="Source MAC" Binding="{Binding SourceMAC}" Width="*" />
+							<DataGridTextColumn Header="Source Port" Binding="{Binding SourcePort}" Width="*" />
+							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+				<TabItem Header="Destination">
+					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Destination IP" Binding="{Binding DestinationIP}" Width="*" />
+							<DataGridTextColumn Header="Destination MAC" Binding="{Binding DestinationMAC}" Width="*" />
+							<DataGridTextColumn Header="Destination Port" Binding="{Binding DestinationPort}" Width="*" />
+							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+
+				<TabItem Header="HTTP">
+					<DataGrid ItemsSource="{Binding CapturedPackets}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="HTTP Method" Binding="{Binding HTTPMethod}" Width="*" />
+							<DataGridTextColumn Header="HTTP Request" Binding="{Binding HTTPRequest}" Width="*" />
+							<DataGridTextColumn Header="Packet ID" Binding="{Binding PacketID}" Width="*" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+			</TabControl>
+
+
+			<Button Content="Start Capture" Command="{Binding StartCaptureCommand}" />
+
+
+			<TextBlock Text="My GitHub" FontSize="20" Foreground="Blue"
+					   Cursor="Hand" TextDecorations="Underline"
+					   HorizontalAlignment="Center" Margin="20,20,0,0"
+					   PointerPressed="GitHubLink_Click"/>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>
