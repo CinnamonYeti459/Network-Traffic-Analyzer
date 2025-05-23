@@ -15,5 +15,5 @@ A C# network traffic analyzer with Avalonia UI, capable of capturing and display
 
 - Search options for every category.
 - Stop and pause option
-- Filtering, such as those similae to Wireshark
+- Filtering, such as those similar to Wireshark
 - Bandwidth usage
