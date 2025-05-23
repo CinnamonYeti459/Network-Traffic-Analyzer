@@ -2,7 +2,7 @@
 
 ## Important
 
-- The network traffic analyzer is still in development, so the documentation will remain empty until it is complete.
+- The network traffic analyzer is still in development, so the documentation will remain relativly empty until it is complete.
 
 
 ## Information
